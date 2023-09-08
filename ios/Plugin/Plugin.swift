@@ -282,7 +282,6 @@ public class CameraPreview: CAPPlugin {
                     return
                 }
                 call.reject(error.localizedDescription)
-                call.resolve(["value": image.absoluteString])
             }
         }
     }
@@ -301,7 +300,7 @@ public class CameraPreview: CAPPlugin {
             }
 
             // self.videoUrl = image
-            
+
             call.resolve(["videoFilePath": video.absoluteString])
         }
     }
