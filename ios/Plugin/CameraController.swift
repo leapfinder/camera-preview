@@ -124,6 +124,7 @@ extension CameraController {
             } else {
                 throw CameraControllerError.invalidOperation
             }
+
         }
 
         DispatchQueue(label: "prepare").async {
@@ -132,7 +133,6 @@ extension CameraController {
                 try configureCaptureDevices()
                 try configureDeviceInputs()
                 try configurePhotoOutput()
-                try configureDataOutput()
                 try configureVideoOutput()
                 self.captureSession?.commitConfiguration()
                 self.captureSession?.startRunning()
