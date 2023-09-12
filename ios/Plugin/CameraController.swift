@@ -411,7 +411,7 @@ extension CameraController {
 
     func captureVideo(mirror: Bool = false, completion: @escaping (URL?, Error?) -> Void) {
         guard let captureSession = self.captureSession, captureSession.isRunning else {
-            completion(CameraControllerError.captureSessionIsMissing)
+            completion(nil, CameraControllerError.captureSessionIsMissing)
             return
         }
         let path = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
@@ -427,13 +427,13 @@ extension CameraController {
             if let connection = videoOutput?.connection(with: AVMediaType.video), connection.isVideoOrientationSupported {
                 connection.isVideoMirrored = true
             } else {
-                completion(CameraControllerError.invalidOperation)
+                completion(nil, CameraControllerError.invalidOperation)
                 return
             }
         }
 
         videoOutput!.startRecording(to: fileUrl, recordingDelegate: self)
-        completion(nil)
+        completion(nil,nil)
     }
 
     func stopRecording(completion: @escaping (URL?, Error?) -> Void) {
